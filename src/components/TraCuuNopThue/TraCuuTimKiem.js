@@ -13,19 +13,18 @@ export default class TraCuuTimKiem extends React.Component {
     render() {
       return (
         <Container>
-        <Content>
           <Form>
           <Container style={stylesMain.separator}></Container>
             <Item floatingLabel >
             <Label style={stylesMain.labelFloatingLabel}>Mã doanh nghiệp</Label>
-            <Input  onChangeText={(value) => { this.setState({
+            <Input keyboardType ='numeric' onChangeText={(value) => { this.setState({
                 maDN: value
             })}} style={stylesMain.textInput} />
             </Item>
             <Container style={stylesMain.separator}></Container>
             <Item floatingLabel  >
             <Label style={stylesMain.labelFloatingLabel}>Số tờ khai</Label>
-            <Input onChangeText={(value) => { this.setState({
+            <Input keyboardType ='numeric' onChangeText={(value) => { this.setState({
                 soTK: value
             })}} style={stylesMain.textInput} />
             </Item>
@@ -41,7 +40,6 @@ export default class TraCuuTimKiem extends React.Component {
           </Container>
 
           </Form>
-        </Content>
       </Container>
        
       );

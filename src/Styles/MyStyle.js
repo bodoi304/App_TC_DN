@@ -51,8 +51,14 @@ export const stylesMain = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
   },
+  //lam khoang cach giua cac item
   separator: {
     height: 18,
+  },
+  //seperator header
+  separatorHeader: {
+    height: 40,
+    fontSize: 25
   },
   //dung cho cac o nhap text
   textInput:{
