@@ -14,20 +14,16 @@ import {
   Label
 } from "native-base";
 import { stylesMain, stylesCommon } from "~/Styles/MyStyle";
-import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from "constants";
 
 export default class Login {
-  constructor(props) {
-    super(props);
-    this.state = {
-      maDN: ""
-    }
-  }
   constructor(props) {
     super(props);
     const madn = await AsyncStorage.getItem('madn');
     if (madn !== null) {
       this.props.navigation.navigate('Main')
+    }
+    this.state = {
+      maDN: ""
     }
   }
   render() {
