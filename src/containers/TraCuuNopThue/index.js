@@ -4,14 +4,15 @@ import TraCuuKetQua from '../../components/TraCuuNopThue/TraCuuKetQua';
 import saga from "./saga";
 import reducer from "./reducer";
 import {sagaGetTKNoThue} from "./actions";
-import {updateIsLoading} from '../../globalReducer/action'
+import {updateIsLoading} from '../../globalReducer/actions'
 import injectSaga from "../../utils/injectSaga";
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { AsyncStorage } from "react-native";
+
+
 const mapStateToProps = (state) => {
   return {
-    maDN: state.globalReducer.get('currentUser').maDN,
     isLoading: state.globalReducer.get('isLoading'),
     tkNopThue: state.TraCuuNopThue.get('tkNopThue'),
   }

@@ -3,7 +3,6 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Provider } from "react-redux";
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './src/navigation/AppNavigator';
-import configureStore from './configureStore';
 import {store} from './store'
 import {Root} from "native-base";
 export default class App extends React.Component {

@@ -11,21 +11,25 @@ import {
 import {
   Text,
   Form,
-  Label
+  Label,
+  Item,
+  Input
 } from "native-base";
 import { stylesMain, stylesCommon } from "~/Styles/MyStyle";
-
-export default class Login {
+import { AsyncStorage } from "react-native"
+export default class Login extends React.Component{
   constructor(props) {
-    super(props);
-    const madn = await AsyncStorage.getItem('madn');
-    if (madn !== null) {
-      this.props.navigation.navigate('Main')
-    }
+    super(props); 
     this.state = {
       maDN: ""
     }
   }
+  
+  _signInAsync = async (madn) => {
+    await AsyncStorage.setItem('madn', madn);
+    this.props.navigation.navigate('Main');
+  };
+
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -34,7 +38,7 @@ export default class Login {
             <View style={styles.logoContainer}>
               <Image
                 style={styles.logo}
-                source={require("../../../assets/logo.png")}
+                source={require("../../../assets/images/logo.png")}
               />
               <Text style={styles.title}>ĐĂNG NHẬP</Text>
             </View>
@@ -48,8 +52,11 @@ export default class Login {
                     })
                   }} style={stylesMain.textInput} />
                 </Item>
-                <TouchableOpacity disabled={submitting}
-                  onPress={this.props.login(this.state.maDN)}
+                <TouchableOpacity 
+                  onPress={() => {
+                    this.props.login(this.state.maDN)
+                    this._signInAsync(this.state.maDN)
+                   }}
                   style={styles.buttonContainer} >
                   <Text style={styles.buttonText}>ĐĂNG NHẬP</Text>
                 </TouchableOpacity>

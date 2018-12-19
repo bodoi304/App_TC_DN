@@ -11,8 +11,8 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title, Separator, T
 import { stylesMain } from "../Styles/MyStyle";
 import { CHUC_NANG_DEFAULT } from "../constants/Mess";
 import TraCuuNopThueContainer from "../containers/TraCuuNopThue";
-import {sagaLogout} from '../globalReducer/action'
-
+import {sagaLogout} from '../containers/Login/actions'
+import {store} from '../../store'
 const MyDrawerNavigator = createDrawerNavigator({
   Home: {
     screen: TraCuuNopThueContainer,
@@ -79,10 +79,10 @@ export default class HomeScreen extends React.Component {
           </Body>
           <Right>
             <Button transparent onPress={() => {
-              dispatch(sagaLogout())
+              store.dispatch(sagaLogout())
               this.props.navigation.navigate('Login');
             }}>
-              <Icon ios='ios-logout' android="md-logout" />
+              <Icon ios='ios-log-out' android="md-log-out" />
             </Button>
           </Right>
         </Header>

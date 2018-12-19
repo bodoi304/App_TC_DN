@@ -3,8 +3,7 @@ import request from "../../utils/request";
 import { getTKNoThue } from "./actions";
 import {apiUrl}  from "../../constants/APIUrl";
 import { constants} from "./constants";
-import ToastEx from "../../components/Common/ToastEx";
-import {updateIsLoading} from '../../globalReducer/action'
+import {updateIsLoading} from '../../globalReducer/actions'
 export function* doFetchGetTKNoThue(action) {
     const tkNopThue = action.payload.tkNopThue;
     try {
