@@ -8,8 +8,10 @@ import {updateIsLoading} from '../../globalReducer/action'
 import injectSaga from "../../utils/injectSaga";
 import { connect } from "react-redux";
 import { compose } from 'redux';
+import { AsyncStorage } from "react-native";
 const mapStateToProps = (state) => {
   return {
+    maDN: state.globalReducer.get('currentUser').maDN,
     isLoading: state.globalReducer.get('isLoading'),
     tkNopThue: state.TraCuuNopThue.get('tkNopThue'),
   }
@@ -41,7 +43,7 @@ const TraCuuKetQuaContainer =  compose(
   withConnect,
 )(TraCuuKetQua);
 
-const TraCuuNopThue = createStackNavigator({
+const TraCuuNopThueContainer = createStackNavigator({
   TraCuuTimKiem: TraCuuTimKiemContainer,
   TraCuuKetQua: TraCuuKetQuaContainer
 },
@@ -51,4 +53,4 @@ const TraCuuNopThue = createStackNavigator({
   }
 });
 
-export default TraCuuNopThue
+export default TraCuuNopThueContainer

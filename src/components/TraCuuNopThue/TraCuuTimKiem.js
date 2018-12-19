@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Content, Form, Item, Button, Icon, Input,  Text,Label } from 'native-base';
 import {stylesMain,stylesCommon} from "../../Styles/MyStyle";
-
+import {View} from "react-native";
 export default class TraCuuTimKiem extends React.Component {
   constructor(props) {
     super(props);
@@ -14,14 +14,14 @@ export default class TraCuuTimKiem extends React.Component {
       return (
         <Container>
           <Form>
-          <Container style={stylesMain.separator}></Container>
+          <View style={stylesMain.separator}></View>
             <Item floatingLabel >
             <Label style={stylesMain.labelFloatingLabel}>Mã doanh nghiệp</Label>
-            <Input keyboardType ='numeric' onChangeText={(value) => { this.setState({
+            <Input keyboardType ='numeric' value={this.props.maDN} onChangeText={(value) => { this.setState({
                 maDN: value
             })}} style={stylesMain.textInput} />
             </Item>
-            <Container style={stylesMain.separator}></Container>
+            <View style={stylesMain.separator}></View>
             <Item floatingLabel  >
             <Label style={stylesMain.labelFloatingLabel}>Số tờ khai</Label>
             <Input keyboardType ='numeric' onChangeText={(value) => { this.setState({

@@ -6,46 +6,46 @@ import {
   Text,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-import { createDrawerNavigator,DrawerItems } from 'react-navigation';
-import { Container, Header, Left, Body, Right, Button, Icon, Title,  Separator,Thumbnail } from 'native-base';
-import {stylesMain} from "../Styles/MyStyle";
-import {CHUC_NANG_DEFAULT} from "../constants/Mess";
-import TraCuuNopThue from "../containers/TraCuuNopThue";
-
+import { createDrawerNavigator, DrawerItems } from 'react-navigation';
+import { Container, Header, Left, Body, Right, Button, Icon, Title, Separator, Thumbnail } from 'native-base';
+import { stylesMain } from "../Styles/MyStyle";
+import { CHUC_NANG_DEFAULT } from "../constants/Mess";
+import TraCuuNopThueContainer from "../containers/TraCuuNopThue";
+import {sagaLogout} from '../globalReducer/action'
 
 const MyDrawerNavigator = createDrawerNavigator({
   Home: {
-    screen: TraCuuNopThue,
+    screen: TraCuuNopThueContainer,
   },
 },
-{
-  contentComponent: (props) => {
-    return (
-      <ScrollView>
-             <Thumbnail square style={{width:350, height:80}}  source={require("../../assets/images/banner.jpg")} />
-         <Separator>
-            <Text  style= { stylesMain.textSeparatorDrawer}>TRA CỨU</Text>
-         </Separator>
-        <DrawerItems
-          {...props}
-          items={[{ key: "Home", routeName: "Home" }]}
-          getLabel={() => {
-            return CHUC_NANG_DEFAULT;
-          }}
-          onItemPress={() => {
-            props.navigation.setParams({title: CHUC_NANG_DEFAULT});
-            props.navigation.navigate("Home");
-          }}
-          renderIcon={() => {
-            return <Icon ios='ios-trending-up' android="md-trending-up" />;
-          }}
-        />
+  {
+    contentComponent: (props) => {
+      return (
+        <ScrollView>
+          <Thumbnail square style={{ width: 350, height: 80 }} source={require("../../assets/images/banner.jpg")} />
+          <Separator>
+            <Text style={stylesMain.textSeparatorDrawer}>TRA CỨU</Text>
+          </Separator>
+          <DrawerItems
+            {...props}
+            items={[{ key: "Home", routeName: "Home" }]}
+            getLabel={() => {
+              return CHUC_NANG_DEFAULT;
+            }}
+            onItemPress={() => {
+              props.navigation.setParams({ title: CHUC_NANG_DEFAULT });
+              props.navigation.navigate("Home");
+            }}
+            renderIcon={() => {
+              return <Icon ios='ios-trending-up' android="md-trending-up" />;
+            }}
+          />
 
-      </ScrollView>
-     
-    );
+        </ScrollView>
+
+      );
+    }
   }
-}
 );
 
 
@@ -54,38 +54,40 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-  
+
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() 
-  {
-    
+  componentDidMount() {
+
   }
 
   render() {
     return (
       <Container>
-      <Header transparent>
-      <Left>
-        <Button transparent onPress={() => { 
-            this.props.navigation.toggleDrawer();
-          }}>
-        <Icon ios='ios-menu' android="md-menu" />
-        </Button>
-      </Left>
-      <Body >
-        <Title style={{fontSize: 16}}>{this.props.navigation.getParam('title', CHUC_NANG_DEFAULT)} </Title>
-      </Body>
-      <Right> 
-        {/* <Button transparent>
-        <Icon ios='ios-arrow-back' android="md-arrow-back"  />
-        </Button> */}
-      </Right>
-    </Header>
-        <MyDrawerNavigator  navigation={this.props.navigation}></MyDrawerNavigator>
-        </Container>
+        <Header transparent>
+          <Left>
+            <Button transparent onPress={() => {
+              this.props.navigation.toggleDrawer();
+            }}>
+              <Icon ios='ios-menu' android="md-menu" />
+            </Button>
+          </Left>
+          <Body >
+            <Title style={{ fontSize: 16 }}>{this.props.navigation.getParam('title', CHUC_NANG_DEFAULT)} </Title>
+          </Body>
+          <Right>
+            <Button transparent onPress={() => {
+              dispatch(sagaLogout())
+              this.props.navigation.navigate('Login');
+            }}>
+              <Icon ios='ios-logout' android="md-logout" />
+            </Button>
+          </Right>
+        </Header>
+        <MyDrawerNavigator navigation={this.props.navigation}></MyDrawerNavigator>
+      </Container>
     );
   }
 

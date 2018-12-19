@@ -53,7 +53,7 @@ export const stylesMain = StyleSheet.create({
   },
   //lam khoang cach giua cac item
   separator: {
-    height: 18,
+    height: 8,
   },
   //seperator header
   separatorHeader: {
@@ -66,7 +66,7 @@ export const stylesMain = StyleSheet.create({
   },
   //dung cho label floatLabel Item
   labelFloatingLabel:{
-    marginTop: -12,
+    marginTop: -10,
 
   },
   //khoang cach button voi form

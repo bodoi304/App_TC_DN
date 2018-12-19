@@ -27,7 +27,6 @@ export default function configureStore() {
     createReducer(),
     compose(...enhancers)
   );
-
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry

@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "babel-plugin-root-import": "^6.1.0",
+    "eslint": "^5.10.0",
     "expo": "^31.0.2",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.11",
