@@ -6,7 +6,7 @@ import { createStore, applyMiddleware,compose } from 'redux';
 
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
-
+import whatchLogin from './src/containers/Login/saga'
 export const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore() {
@@ -27,7 +27,7 @@ export default function configureStore() {
     createReducer(),
     compose(...enhancers)
   );
-
+  sagaMiddleware.run(whatchLogin)
 
   // Extensions
   store.runSaga = sagaMiddleware.run;

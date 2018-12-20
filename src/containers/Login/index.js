@@ -7,11 +7,10 @@ import { connect } from "react-redux";
 import { compose } from 'redux';
 import Login from '../../components/Login/Login'
 import saga from './saga'
-import injectSaga from "../../utils/injectSaga";
+
 const mapStateToProps = (state) => {
-  console.log('login' + JSON.stringify(state))
   return {
-    maDN: state.globalReducer.get('currentUser') !== null ?  state.globalReducer.get('currentUser').maDN : null,
+   
   }
 }
 
@@ -27,12 +26,11 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const withSaga = injectSaga({ key: 'Login', saga });
+
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const LoginContainer =  compose(
-  withSaga,
-  withConnect,
+  withConnect
 )(Login);
 
 export default LoginContainer

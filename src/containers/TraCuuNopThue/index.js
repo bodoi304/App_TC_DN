@@ -12,7 +12,6 @@ import { AsyncStorage } from "react-native";
 
 
 const mapStateToProps = (state) => {
-  console.log(JSON.stringify(state))
   return {
     isLoading: state.globalReducer.get('isLoading'),
     tkNopThue: state.TraCuuNopThue.get('tkNopThue'),

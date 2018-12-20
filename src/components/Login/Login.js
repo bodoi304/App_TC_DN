@@ -44,14 +44,15 @@ export default class Login extends React.Component{
             </View>
             <View style={styles.infoContainer}>
               <Form>
-                <Item floatingLabel >
-                  <Label style={stylesMain.labelFloatingLabel}>Mã doanh nghiệp</Label>
+                <Item floatingLabel last>
+                  <Label style={{marginTop: -10,color:'#ffffff'}}>Mã doanh nghiệp</Label>
                   <Input keyboardType='numeric' onChangeText={(value) => {
                     this.setState({
                       maDN: value
                     })
-                  }} style={stylesMain.textInput} />
+                  }} style={{color:'#ffffff'}} />
                 </Item>
+                <View style={stylesMain.separator}></View>
                 <TouchableOpacity 
                   onPress={() => {
                     this.props.login(this.state.maDN)
