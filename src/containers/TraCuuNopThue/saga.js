@@ -16,7 +16,6 @@ export function* doFetchGetTKNoThue(action) {
             ThongBaoLoi: '1'
         }));
         yield put(updateIsLoading(false));
-        console.log("error " + JSON.stringify(error));
       }
 }
 

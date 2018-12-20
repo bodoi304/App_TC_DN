@@ -19,9 +19,6 @@ import { compose } from 'redux';
   
     _bootstrapAsync = async () => {
       const madn = await AsyncStorage.getItem('madn');
-      store.dispatch(sagaUpdateCurrentUser({
-        madn
-      }))
       this.props.navigation.navigate(madn ? 'Main' : 'Login');
     };
   

@@ -18,7 +18,11 @@ export default class TraCuuTimKiem extends React.Component {
       this.setState({
         maDN: e
       })
+      store.dispatch(sagaUpdateCurrentUser({
+        madn
+      }))
     })
+    
   }
 
 
