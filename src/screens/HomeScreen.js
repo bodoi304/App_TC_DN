@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation';
-import { Container, Header, Left, Body, Right, Button, Icon, Title, Separator, Thumbnail } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Icon, Title, Separator, Thumbnail,Fab  } from 'native-base';
 import { stylesMain } from "../Styles/MyStyle";
 import { CHUC_NANG_DEFAULT } from "../constants/Mess";
 import TraCuuNopThueContainer from "../containers/TraCuuNopThue";
@@ -57,6 +57,9 @@ export default class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      active: 'true'
+    };
   }
 
   componentDidMount() {
@@ -87,6 +90,21 @@ export default class HomeScreen extends React.Component {
           </Right>
         </Header>
         <MyDrawerNavigator navigation={this.props.navigation}></MyDrawerNavigator>
+        <Fab
+            active={this.state.active}
+            direction="up"
+            containerStyle={{ }}
+            style={{ backgroundColor: '#5067FF' }}
+            position="bottomRight"
+            onPress={() => this.setState({ active: !this.state.active })}>
+            <Icon  ios='ios-share' android="md-share"  />
+            <Button style={{ backgroundColor: '#34A34F' }}>
+              <Icon ios='ios-call' android="md-call" />
+            </Button>
+            <Button style={{ backgroundColor: '#3B5998' }}>
+            <Icon ios='logo-facebook' android="logo-facebook" /> 
+            </Button>
+          </Fab>
       </Container>
     );
   }
