@@ -15,7 +15,7 @@ import {
   Item,
   Input
 } from "native-base";
-import { stylesMain, stylesCommon } from "~/Styles/MyStyle";
+import { stylesMain } from "~/Styles/MyStyle";
 import { AsyncStorage } from "react-native"
 export default class Login extends React.Component{
   constructor(props) {
