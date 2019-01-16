@@ -13,10 +13,14 @@ import { CHUC_NANG_DEFAULT } from "../constants/Mess";
 import TraCuuNopThueContainer from "../containers/TraCuuNopThue";
 import {sagaLogout} from '../containers/Login/actions'
 import {store} from '../../store'
+import CameraContainer from '../containers/CameraRollDemo'
 const MyDrawerNavigator = createDrawerNavigator({
   Home: {
     screen: TraCuuNopThueContainer,
   },
+  CameraRollDemo: {
+    screen: CameraContainer,
+  }
 },
   {
     contentComponent: (props) => {
@@ -40,7 +44,20 @@ const MyDrawerNavigator = createDrawerNavigator({
               return <Icon ios='ios-trending-up' android="md-trending-up" />;
             }}
           />
-
+        <DrawerItems
+            {...props}
+            items={[{ key: "CameraRollDemo", routeName: "CameraRollDemo" }]}
+            getLabel={() => {
+              return 'CameraRollDemo';
+            }}
+            onItemPress={() => {
+              props.navigation.setParams({ title: 'CameraRollDemo' });
+              props.navigation.navigate("CameraRollDemo");
+            }}
+            renderIcon={() => {
+              return <Icon ios='ios-trending-up' android="md-trending-up" />;
+            }}
+          />
         </ScrollView>
 
       );
@@ -58,7 +75,7 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: 'true'
+      active: 'false'
     };
   }
 

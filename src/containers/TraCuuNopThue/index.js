@@ -14,7 +14,7 @@ import { AsyncStorage } from "react-native";
 const mapStateToProps = (state) => {
   return {
     isLoading: state.globalReducer.get('isLoading'),
-    tkNopThue: state.TraCuuNopThue.get('tkNopThue'),
+    tkNopThue: state.CameraRollDemo.get('tkNopThue'),
   }
 }
 
