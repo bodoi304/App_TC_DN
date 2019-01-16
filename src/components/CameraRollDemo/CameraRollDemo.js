@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera, Permissions } from 'expo';
-
+import base64 from 'react-native-base64'
 export default class CameraRollDemo extends React.Component {
 
   state = {
@@ -16,11 +16,10 @@ export default class CameraRollDemo extends React.Component {
 
   snap = async () => {
     if (this.camera) {
-      let photo = await this.camera.takePictureAsync({base64:'true' });
-      var base64 = require('base-64');
-     let bytes= base64.decode(photo.base64)
-      console.log('bam xong')
-      this.props.extracTextFromImage(bytes)
+      let photo = await this.camera.takePictureAsync();
+      Expo.FileSystem.readAsStringAsync(photo.uri)
+      console.log('bam xong' )
+      // this.props.extracTextFromImage('dâđa')
     }
   };
 
