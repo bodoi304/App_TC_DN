@@ -17,9 +17,8 @@ export default class CameraRollDemo extends React.Component {
   snap = async () => {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync();
-      Expo.FileSystem.readAsStringAsync(photo.uri)
       console.log('bam xong' )
-      // this.props.extracTextFromImage('dâđa')
+      this.props.extracTextFromImage(photo.uri)
     }
   };
 
@@ -32,7 +31,7 @@ export default class CameraRollDemo extends React.Component {
     } else {
       return (
         <View style={{ flex: 1 }}>
-          <Camera style={{ flex: 1 }} type={this.state.type} ref={ref => { this.camera = ref; }}>
+          <Camera style={{ flex: 1 }} type={this.state.type} autoFocus='on' ref={ref => { this.camera = ref; }}>
             <View
               style={{
                 flex: 1,

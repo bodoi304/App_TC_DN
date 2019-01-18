@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import { URL_METHOD } from './constants'
 // import { ACCESS_TOKEN_KEY } from '../constants';
 
 /**
@@ -23,6 +24,7 @@ function parseJSON(response) {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 function checkStatus(response) {
+  console.log('loi' + JSON.stringify(response) )
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -40,30 +42,43 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default function request(url, body) {
-  // const option =  {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: body,
-  // }
- 
-  // if (localStorage.getItem(ACCESS_TOKEN_KEY)) {
-  //   headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN_KEY))
-  // }
+export default function request(url, body, type) {
 
-  // const defaults = { headers: headers };
-  // options = Object.assign({}, defaults, options);
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: body,
-  })
-    .then(checkStatus)
-    .then(parseJSON);
+  if (URL_METHOD.post === type) {
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  }
+  else if (URL_METHOD.get === type) {
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      }
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  }
+  else if (URL_METHOD.form_data === type) {
+    var formData = new FormData();
+    formData.append('apikey', '40e81eac-12ef-4f2a-8340-23140872433a');
+    formData.append('file', body);
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: formData,
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  }
+
 }
