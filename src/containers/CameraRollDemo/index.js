@@ -1,13 +1,12 @@
 import { createStackNavigator } from 'react-navigation';
 import CameraRollDemo from '../../components/CameraRollDemo/CameraRollDemo';
+import CameraRollDemoResult from '../../components/CameraRollDemo/CameraRollDemoResult';
 import saga from "./saga";
-import reducer from "./reducer";
-import {sagaGetTKNoThue} from "./actions";
 import {sagaExtracTextFromImage} from './actions'
 import injectSaga from "../../utils/injectSaga";
 import { connect } from "react-redux";
 import { compose } from 'redux';
-import { AsyncStorage } from "react-native";
+import {updateIsLoading} from '../../globalReducer/actions'
 
 
 const mapStateToProps = (state) => {
@@ -20,6 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
       extracTextFromImage: (byteArray) => {
+          dispatch(updateIsLoading(true))
           dispatch(sagaExtracTextFromImage(byteArray))  
       },
   }
@@ -34,9 +34,13 @@ const CameraRollDemoContainer =  compose(
   withConnect,
 )(CameraRollDemo);
 
+const CameraRollDemoResultContainer =  compose(
+  withConnect,
+)(CameraRollDemoResult);
 
 const CameraContainer = createStackNavigator({
-  CameraRollDemo: CameraRollDemoContainer
+  CameraRollDemo: CameraRollDemoContainer,
+  CameraRollDemoResult: CameraRollDemoResultContainer
 },
 {
   navigationOptions: {

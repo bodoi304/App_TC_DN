@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera, Permissions } from 'expo';
-import base64 from 'react-native-base64'
+import { Thumbnail } from 'native-base'
 export default class CameraRollDemo extends React.Component {
 
   state = {
@@ -17,8 +17,8 @@ export default class CameraRollDemo extends React.Component {
   snap = async () => {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync();
-      console.log('bam xong' )
       this.props.extracTextFromImage(photo.uri)
+      this.props.navigation.navigate('CameraRollDemoResult')
     }
   };
 
@@ -31,29 +31,20 @@ export default class CameraRollDemo extends React.Component {
     } else {
       return (
         <View style={{ flex: 1 }}>
-          <Camera style={{ flex: 1 }} type={this.state.type} autoFocus='on' ref={ref => { this.camera = ref; }}>
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: 'transparent',
-                flexDirection: 'row',
-              }}>
+          <Camera style={{ flex: 1,flexDirection: 'row', }} type={this.state.type} autoFocus='on' ref={ref => { this.camera = ref; }}>
               <TouchableOpacity
                 style={{
-                  flex: 0.1,
+                  flex: 1,
                   alignSelf: 'flex-end',
                   alignItems: 'center',
                 }}
                 onPress={ () => {
-                  console.log('bam ne')
                   this.snap()
                 }}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' } }>
-                  {' '}Snap{' '}
-                </Text>
+               <Thumbnail square style={{width: 90, height: 90}} source={require("../../../assets/images/Record-512.png")} />
+  
               </TouchableOpacity>
-            </View>
+
           </Camera>
         </View>
       );

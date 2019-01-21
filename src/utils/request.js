@@ -24,7 +24,6 @@ function parseJSON(response) {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 function checkStatus(response) {
-  console.log('loi' + JSON.stringify(response) )
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -69,7 +68,11 @@ export default function request(url, body, type) {
   else if (URL_METHOD.form_data === type) {
     var formData = new FormData();
     formData.append('apikey', '40e81eac-12ef-4f2a-8340-23140872433a');
-    formData.append('file', body);
+    formData.append('file', {
+      uri: body,
+      type: 'image/jpeg', 
+      name: 'anhne'
+    });
     return fetch(url, {
       method: 'POST',
       headers: {
