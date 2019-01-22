@@ -107,7 +107,7 @@ export default class HomeScreen extends React.Component {
           </Right>
         </Header>
         <MyDrawerNavigator navigation={this.props.navigation}></MyDrawerNavigator>
-        <Fab
+        {/* <Fab
             active={this.state.active}
             direction="up"
             containerStyle={{ }}
@@ -121,7 +121,7 @@ export default class HomeScreen extends React.Component {
             <Button style={{ backgroundColor: '#3B5998' }}>
             <Icon ios='logo-facebook' android="logo-facebook" /> 
             </Button>
-          </Fab>
+          </Fab> */}
       </Container>
     );
   }
